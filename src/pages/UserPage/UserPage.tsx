@@ -1,30 +1,45 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { idle, loading, Status } from '../../utils/Status'
-import { fetchPlayer, type PlayerJSON } from '../../api/fetchUsername'
+import {
+  isIdleStatus,
+  isLoadingStatus,
+  loading,
+  Status,
+} from '../../utils/Status'
+import { fetchPlayer } from '../../api/fetchUsername'
 import { UserCard } from '../../components/UserCard/UserCard'
 import styles from './UserPage.module.scss'
+import { UsersContext } from '../../hooks/UsersContext'
 
 export const UserPage = () => {
   const { username } = useParams<{ username: string }>()
-  const [details, setDetails] = useState<Status<PlayerJSON>>(idle)
+  const { usersData, onSetUserData } = useContext(UsersContext)
 
   useEffect(() => {
-    if (username) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setDetails(loading)
+    if (username && !usersData[username]) {
+      onSetUserData(username, loading)
       fetchPlayer(username).then((value) => {
-        setDetails(value)
+        onSetUserData(username, value)
       })
     }
-  }, [username])
+  }, [onSetUserData, username, usersData])
+
+  if (!username) {
+    return null
+  }
+
+  const details = usersData[username]
+
+  if (
+    details === undefined ||
+    isIdleStatus(details) ||
+    isLoadingStatus(details)
+  ) {
+    return <div>Loading...</div>
+  }
 
   if (details.kind === Status.Failure) {
     return <div>Error</div>
-  }
-
-  if (details.kind !== Status.Success) {
-    return <div>Loading...</div>
   }
 
   const { data } = details
