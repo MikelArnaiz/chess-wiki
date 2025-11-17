@@ -1,0 +1,22 @@
+.card {
+  display: flex;
+  align-items: center;
+  column-gap: 1em;
+  margin-top: 2em;
+
+  .avatar {
+    border-radius: 50%;
+    max-width: 200px;
+  }
+
+  .title {
+    margin-left: 0.5em;
+    background-color: red;
+    color: white;
+    padding: 0.25em 0.5em;
+  }
+
+  .username {
+    font-style: italic;
+  }
+}
