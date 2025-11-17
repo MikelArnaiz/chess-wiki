@@ -1,6 +1,9 @@
+import { createFailureStatus, createSuccessStatus } from '../utils/Status'
 import { GRANDMASTERS_API } from './endpoints'
 
-export async function fetchGrandmasters() {
+export type GrandmastersResponse = { players: string[] }
+
+export async function fetchGrandmastersList() {
   try {
     const response = await fetch(GRANDMASTERS_API)
 
@@ -8,9 +11,9 @@ export async function fetchGrandmasters() {
       throw new Error('Fetching grandmasters API failed')
     }
 
-    const result = await response.json()
-    return result as { players: string[] }
+    const result = (await response.json()) as GrandmastersResponse
+    return createSuccessStatus(result.players)
   } catch {
-    return null
+    return createFailureStatus()
   }
 }
