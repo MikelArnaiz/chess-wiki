@@ -8,8 +8,8 @@ import {
   isSuccessStatus,
 } from '../../utils/Status'
 import styles from './Home.module.scss'
-import classNames from 'classnames'
 import { UsersContext } from '../../hooks/UsersContext'
+import { Skeleton } from '../../components/Skeleton/Skeleton'
 
 export const HomePage = () => {
   const { usersList, onSetUsers } = useContext(UsersContext)
@@ -36,11 +36,8 @@ export const HomePage = () => {
         <ul className={styles.list}>
           {skeletonElements.map((_item, index) => {
             return (
-              <li
-                key={index}
-                className={classNames(styles.item, styles.loading)}
-              >
-                &nbsp;
+              <li key={index} className={styles.item}>
+                <Skeleton />
               </li>
             )
           })}

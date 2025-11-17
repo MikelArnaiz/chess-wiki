@@ -10,6 +10,7 @@ import { fetchPlayer } from '../../api/fetchUsername'
 import { UserCard } from '../../components/UserCard/UserCard'
 import styles from './UserPage.module.scss'
 import { UsersContext } from '../../hooks/UsersContext'
+import { UserCardSkeleton } from '../../components/UserCard/UserCardSkeleton'
 
 export const UserPage = () => {
   const { username } = useParams<{ username: string }>()
@@ -35,7 +36,7 @@ export const UserPage = () => {
     isIdleStatus(details) ||
     isLoadingStatus(details)
   ) {
-    return <div>Loading...</div>
+    return <UserCardSkeleton />
   }
 
   if (details.kind === Status.Failure) {
