@@ -1,0 +1,13 @@
+.navbar {
+  background: #f0f0f0;
+  color: #e5e7eb;
+  padding: 10px 15px;
+
+  .link {
+    color: black;
+
+    &:hover {
+      color: blue;
+    }
+  }
+}
