@@ -9,6 +9,7 @@ import {
   Status,
 } from '../../utils/Status'
 import styles from './Home.module.scss'
+import classNames from 'classnames'
 
 export const HomePage = () => {
   const [usersList, setUsersList] = useState<Status<string[]>>(idle)
@@ -26,14 +27,30 @@ export const HomePage = () => {
     return <div>Error</div>
   }
   if (!isSuccessStatus(usersList)) {
-    return <div>Loading...</div>
+    const skeletonElements = new Array(50).fill(null)
+
+    return (
+      <div>
+        <ul className={styles.list}>
+          {skeletonElements.map((_item, index) => {
+            return (
+              <li
+                key={index}
+                className={classNames(styles.item, styles.loading)}
+              >
+                &nbsp;
+              </li>
+            )
+          })}
+        </ul>
+      </div>
+    )
   }
 
   const users = usersList.data
 
   return (
     <div>
-      <h3 className={styles.heading}>Players list</h3>
       {!!users?.length && (
         <ul className={styles.list}>
           {users.map((username) => (

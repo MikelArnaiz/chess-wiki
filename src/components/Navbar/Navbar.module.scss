@@ -1,13 +1,13 @@
 .navbar {
-  background: #f0f0f0;
+  background-color: brown;
   color: #e5e7eb;
   padding: 10px 15px;
 
   .link {
-    color: black;
+    color: white;
 
     &:hover {
-      color: blue;
+      font-weight: bold;
     }
   }
 }
