@@ -8,6 +8,7 @@ import {
   isSuccessStatus,
   Status,
 } from '../../utils/Status'
+import styles from './Home.module.scss'
 
 export const HomePage = () => {
   const [usersList, setUsersList] = useState<Status<string[]>>(idle)
@@ -32,12 +33,14 @@ export const HomePage = () => {
 
   return (
     <div>
-      Players list:
+      <h3 className={styles.heading}>Players list</h3>
       {!!users?.length && (
-        <ul>
+        <ul className={styles.list}>
           {users.map((username) => (
-            <li key={username}>
-              <Link to={getUserPagePath(username)}>{username}</Link>
+            <li key={username} className={styles.item}>
+              <Link to={getUserPagePath(username)} className={styles.link}>
+                {username}
+              </Link>
             </li>
           ))}
         </ul>

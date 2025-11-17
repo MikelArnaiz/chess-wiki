@@ -1,0 +1,32 @@
+.heading {
+  padding: 0px 10px;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  .item {
+    &:nth-child(odd) {
+      .link {
+        background: #fafafa;
+      }
+    }
+    &:nth-child(even) {
+      .link {
+        background: #f0f0f0;
+      }
+    }
+
+    .link {
+      color: black;
+      padding: 5px 10px;
+      display: block;
+
+      &:hover {
+        background: #e5f0ff;
+      }
+    }
+  }
+}
