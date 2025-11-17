@@ -37,7 +37,7 @@ export const HomePage = () => {
           {skeletonElements.map((_item, index) => {
             return (
               <li key={index} className={styles.item}>
-                <Skeleton />
+                <Skeleton fullHeight />
               </li>
             )
           })}

@@ -11,7 +11,13 @@ export const UserCard = ({ data }: UserCardProps) => {
   return (
     <div className={styles.card}>
       {data.avatar && (
-        <img className={styles.avatar} src={data.avatar} alt="Player avatar" />
+        <img
+          width={200}
+          height={200}
+          className={styles.avatar}
+          src={data.avatar}
+          alt="Player avatar"
+        />
       )}
       <div>
         <h3>

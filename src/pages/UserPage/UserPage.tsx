@@ -36,7 +36,11 @@ export const UserPage = () => {
     isIdleStatus(details) ||
     isLoadingStatus(details)
   ) {
-    return <UserCardSkeleton />
+    return (
+      <div className={styles.page}>
+        <UserCardSkeleton />
+      </div>
+    )
   }
 
   if (details.kind === Status.Failure) {

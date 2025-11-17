@@ -13,14 +13,14 @@ export const UserCardSkeleton = () => {
         }}
       >
         <h3>
-          <Skeleton withBg />
+          <Skeleton withBg line />
         </h3>
-        <Skeleton withBg />
-        <Skeleton withBg />
-        <Skeleton withBg />
-        <Skeleton withBg />
-        <Skeleton withBg />
-        <Skeleton withBg />
+        <Skeleton withBg line />
+        <Skeleton withBg line />
+        <Skeleton withBg line />
+        <Skeleton withBg line />
+        <Skeleton withBg line />
+        <Skeleton withBg line />
       </div>
     </div>
   )

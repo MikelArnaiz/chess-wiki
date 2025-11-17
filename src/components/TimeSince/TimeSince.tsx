@@ -23,7 +23,9 @@ export const TimeSince = (props: TimeSinceProps) => {
     }
   }, [props.since])
 
-  if (timeFormatted) {
-    return timeFormatted
+  if (!timeFormatted) {
+    return null
   }
+
+  return timeFormatted
 }
