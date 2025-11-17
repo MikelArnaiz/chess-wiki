@@ -2,11 +2,11 @@ import { createFailureStatus, createSuccessStatus } from '../utils/Status'
 import { getPlayerAPI } from './endpoints'
 
 export type PlayerJSON = {
-  avatar: string
+  avatar?: string
   player_id: number
   '@id': string
   url: string
-  name: string
+  name?: string
   username: string
   title: string
   followers: number

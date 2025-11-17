@@ -10,13 +10,16 @@ type UserCardProps = {
 export const UserCard = ({ data }: UserCardProps) => {
   return (
     <div className={styles.card}>
-      <img className={styles.avatar} src={data.avatar} alt="Player avatar" />
+      {data.avatar && (
+        <img className={styles.avatar} src={data.avatar} alt="Player avatar" />
+      )}
       <div>
         <h3>
-          {data.name}
+          {data.name ?? data.username}
           {data.title && <span className={styles.title}>{data.title}</span>}
         </h3>
-        <div className={styles.username}>{data.username}</div>
+        {/* If name doesn't exist we show the name in the heading, and hide it here */}
+        {data.name && <div className={styles.username}>{data.username}</div>}
         <div>{data.league} league</div>
         <div>{data.followers} followers</div>
         {data.location && <div>{data.location}</div>}
