@@ -1,27 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { fetchGrandmastersList } from '../../api/fetchGrandmasters'
 import { Link } from 'react-router-dom'
 import { getUserPagePath } from '../../utils/path'
 import {
-  idle,
   isFailureStatus,
+  isIdleStatus,
   isSuccessStatus,
-  Status,
 } from '../../utils/Status'
 import styles from './Home.module.scss'
 import classNames from 'classnames'
+import { UsersContext } from '../../hooks/UsersContext'
 
 export const HomePage = () => {
-  const [usersList, setUsersList] = useState<Status<string[]>>(idle)
+  const { usersList, onSetUsers } = useContext(UsersContext)
 
   useEffect(() => {
     async function getGrandmasters() {
       const results = await fetchGrandmastersList()
-      setUsersList(results)
+      onSetUsers(results)
     }
 
-    getGrandmasters()
-  }, [])
+    if (isIdleStatus(usersList)) {
+      getGrandmasters()
+    }
+  }, [onSetUsers, usersList])
 
   if (isFailureStatus(usersList)) {
     return <div>Error</div>
@@ -47,13 +49,13 @@ export const HomePage = () => {
     )
   }
 
-  const users = usersList.data
+  const { data } = usersList
 
   return (
     <div>
-      {!!users?.length && (
+      {!!data?.length && (
         <ul className={styles.list}>
-          {users.map((username) => (
+          {data.map((username) => (
             <li key={username} className={styles.item}>
               <Link to={getUserPagePath(username)} className={styles.link}>
                 {username}

@@ -24,6 +24,9 @@ export const createFailureStatus = (): Failure => ({
 
 export type Status<Data> = Idle | Loading | Success<Data> | Failure
 
+export const isIdleStatus = <T>(status: Status<T>): status is Idle =>
+  status.kind === Status.Idle
+
 export const isSuccessStatus = <T>(status: Status<T>): status is Success<T> =>
   status.kind === Status.Success
 
