@@ -16,7 +16,6 @@ yarn dev
 - `React` with `TypeScript`
 - State shared via `Context`
 - Routing with `react-router-dom`
-- Dates utility `date-fns` to format dates
 - SCSS modules with `sass-embedded`
 - `classnames` utility
 
